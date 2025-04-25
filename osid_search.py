@@ -2,9 +2,7 @@ import requests
 import re
 
 os_api_key = 'YOUR_API_KEY_HERE'
-collection_id = 'bld-fts-building-4'
-other_parameters = {} # eg. {'crs': 'http://www.opengis.net/def/crs/EPSG/0/27700', 'filter': "buildinguse='Residential Accommodation'"}
-os_ngd_url = f"https://api.os.uk/features/ngd/ofa/v1/collections/{collection_id}/items"
+os_ngd_url = f"https://api.os.uk/features/ngd/ofa/v1/collections/bld-fts-building-4/items"
 osids = [
     '2e36591e-0bd9-4268-99c2-0b653ac630d7',
     '6dca3202-39d9-4d8d-bf97-dd2bbf13550e',
@@ -29,25 +27,15 @@ def is_valid_os_api_key(os_api_key):
 
 is_valid_os_api_key(os_api_key)
 
-def osids_to_filter_string(osids):
-    """
-    Convert a list of OSIDs to a filter string for the API request.
-    """
-    filter_units = [f"(osid='{id}')" for id in osids]
-    filter_string = 'or'.join(filter_units)
-    return filter_string
+filter_units = []
+for id in osids:
+    filter_units.append(f"(osid='{id}')")
 
-filter_string = osids_to_filter_string(osids)
-
-# Merge osid filter with other filters if present
-existing_filter = other_parameters.pop('filter', None)
-if existing_filter:
-    filter_string = f"({filter_string})and({existing_filter})"
+filter_string = 'or'.join(filter_units)
 
 parameters = {
     "key": os_api_key,
-    "filter": filter_string,
-    **other_parameters
+    "filter": filter_string
 }
 
 print(f'requesting {os_ngd_url} with parameters {parameters}')
