@@ -1,7 +1,7 @@
 import requests
 import re
 
-os_api_key = ''
+os_api_key = 'YOUR_API_KEY_HERE'
 collection_id = 'bld-fts-building-4'
 other_parameters = {} # eg. {'crs': 'http://www.opengis.net/def/crs/EPSG/0/27700', 'filter': "buildinguse='Residential Accommodation'"}
 os_ngd_url = f"https://api.os.uk/features/ngd/ofa/v1/collections/{collection_id}/items"
