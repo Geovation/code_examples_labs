@@ -20,15 +20,6 @@ OSIDS = [
     '2ed5d76f-b31d-47c2-9f1c-0555b659ce35'
 ]
 
-def is_valid_os_api_key(os_api_key):
-    if re.match(r'^([a-zA-Z0-9]){32}$', os_api_key):
-        return True
-    else:
-        print("Please enter a valid OS API Key")
-        return False
-
-is_valid_os_api_key(OS_API_KEY)
-
 filter_units = []
 for osid in OSIDS:
     filter_units.append(f"(osid='{osid}')")
