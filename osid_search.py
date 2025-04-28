@@ -1,9 +1,11 @@
-import requests
-import re
+"""This script retrieves building information from the OS NGD API using a list of OSIDs."""
 
-os_api_key = 'YOUR_API_KEY_HERE'
-os_ngd_url = f"https://api.os.uk/features/ngd/ofa/v1/collections/bld-fts-building-4/items"
-osids = [
+import re
+import requests
+
+OS_API_KEY = 'YOUR_API_KEY_HERE'
+OS_NGD_URL = "https://api.os.uk/features/ngd/ofa/v1/collections/bld-fts-building-4/items"
+OSIDS = [
     '2e36591e-0bd9-4268-99c2-0b653ac630d7',
     '6dca3202-39d9-4d8d-bf97-dd2bbf13550e',
     'eedf29cf-f1ff-4730-a882-6602922a0858',
@@ -25,20 +27,20 @@ def is_valid_os_api_key(os_api_key):
         print("Please enter a valid OS API Key")
         return False
 
-is_valid_os_api_key(os_api_key)
+is_valid_os_api_key(OS_API_KEY)
 
 filter_units = []
-for id in osids:
-    filter_units.append(f"(osid='{id}')")
+for osid in OSIDS:
+    filter_units.append(f"(osid='{osid}')")
 
-filter_string = 'or'.join(filter_units)
+FILTER_STRING = 'or'.join(filter_units)
 
 parameters = {
-    "key": os_api_key,
-    "filter": filter_string
+    "key": OS_API_KEY,
+    "filter": FILTER_STRING
 }
 
-print(f'requesting {os_ngd_url} with parameters {parameters}')
-os_response = requests.get(url=os_ngd_url, params=parameters).json()
+print(f'requesting {OS_NGD_URL} with parameters {parameters}')
+os_response = requests.get(url=OS_NGD_URL, params=parameters, timeout=10).json()
 
 print(os_response)
