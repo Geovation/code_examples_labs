@@ -1,6 +1,5 @@
 """This script retrieves building information from the OS NGD API using a list of OSIDs."""
 
-import re
 import requests
 
 OS_API_KEY = 'YOUR_API_KEY_HERE'
