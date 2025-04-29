@@ -6,7 +6,7 @@ import requests
 
 # Use your OS API key from the OS Data Hub, a string of 32 characters
 # Note: The API key should be kept secret and not shared publicly
-YOUR_OS_API_KEY = ''
+YOUR_OS_API_KEY = 'YOUR_OS_API_KEY'
 
 # Replace with the UPRN you want to search for. 100121341481 is Bradford on Avon library
 UPRN_TO_SEARCH = 100121341481
