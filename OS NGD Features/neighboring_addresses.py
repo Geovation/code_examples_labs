@@ -9,8 +9,7 @@ API_KEY = 'YOUR_API_KEY'
 ADDRESS = 'F4, Sutton Yard, 65 Goswell Rd., London EC1V 7EN'
 
 QUERY_URI = 'https://api.os.uk/search/places/v1/find?query=' + ADDRESS
-query_response = requests.get(
-    QUERY_URI, params={'key': API_KEY}, timeout=10).json()
+query_response = requests.get(QUERY_URI, params={'key': API_KEY}, timeout=10).json()
 first_result = query_response['results'][0]['DPA']
 
 x, y = first_result['X_COORDINATE'], first_result['Y_COORDINATE']
