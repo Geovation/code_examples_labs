@@ -15,7 +15,9 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         // Replace with your actual API key and OSIDs. Make sure the project has both 'OS Maps API' and 'OS NGD API - Features' enabled.
-        const apiKey = "YOUR_OS_API_KEY"
+        const apiKey = "YOUR_OS_API_KEY";
+        // Replace with the collection ID you want to use.
+        const collectionId = "bld-fts-building-4";
         const osids = [
             `2e36591e-0bd9-4268-99c2-0b653ac630d7`,
             `6dca3202-39d9-4d8d-bf97-dd2bbf13550e`,
@@ -55,7 +57,7 @@
             let filterUnits = osids.map(id => `(osid='${id}')`);
             let filterString = filterUnits.join(' or ');
 
-            let response = await fetch(`https://api.os.uk/features/ngd/ofa/v1/collections/bld-fts-building-4/items?filter=${filterString}`, {
+            let response = await fetch(`https://api.os.uk/features/ngd/ofa/v1/collections/${collectionId}/items?filter=${filterString}`, {
                 headers: {
                     'Accept': 'application/geo+json',
                     'key': apiKey
