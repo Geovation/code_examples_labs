@@ -1,3 +1,5 @@
+"""This script demostrates an OS-data-based approach to find all the addresses on the same road as a given address."""
+
 import requests
 from shapely import MultiLineString, LineString, set_precision, to_geojson
 
@@ -5,7 +7,10 @@ from shapely import MultiLineString, LineString, set_precision, to_geojson
 API_KEY = 'eEAntN52ODqwXAKY30dqXUibMI8EDzab'
 ADDRESS = 'F4, Sutton Yard, 65 Goswell Rd., London EC1V 7EN'
 BUFFER_DISTANCE = 20  # in meters
-DATASET = 'LPI' # Dataset for the final search: DPA or LPI
+DATASET = 'LPI'  # Dataset for the final search: DPA or LPI
+# Set to True if you want to filter final results for those matching the USRN.
+# Only possible if DATASET is LPI.
+FILTER_FOR_USRN = True
 
 # 1: Retreive the USRN of the address
 query_uri = 'https://api.os.uk/search/places/v1/find?query=' + ADDRESS
@@ -68,3 +73,8 @@ places_response = requests.post(
     headers=headers,
     timeout=10
 ).json()
+results = places_response['results']
+
+# 5: Filter results for USRN if required
+if FILTER_FOR_USRN and DATASET == 'LPI':
+    results = [r for r in results if r['LPI']['USRN'] == usrn]
