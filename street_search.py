@@ -4,7 +4,7 @@ import requests
 from shapely import MultiLineString, LineString, set_precision, to_geojson
 
 # Setup: Replace with your API key, and set your own address and buffer distance
-API_KEY = 'eEAntN52ODqwXAKY30dqXUibMI8EDzab'
+API_KEY = 'YOUR_OS_API_KEY'
 ADDRESS = 'F4, Sutton Yard, 65 Goswell Rd., London EC1V 7EN'
 BUFFER_DISTANCE = 20  # in meters
 DATASET = 'LPI'  # Dataset for the final search: DPA or LPI
