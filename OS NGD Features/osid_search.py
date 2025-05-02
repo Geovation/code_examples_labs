@@ -2,8 +2,8 @@
 
 import requests
 
-OS_API_KEY = 'YOUR_API_KEY_HERE'
-OS_NGD_URL = "https://api.os.uk/features/ngd/ofa/v1/collections/bld-fts-building-4/items"
+OS_API_KEY = 'YOUR_OS_API_KEY'
+COLLECTION_ID = 'bld-fts-building-4'
 OSIDS = [
     '2e36591e-0bd9-4268-99c2-0b653ac630d7',
     '6dca3202-39d9-4d8d-bf97-dd2bbf13550e',
@@ -18,6 +18,8 @@ OSIDS = [
     '9aa4d5ab-bbea-46b2-a5df-f4a30434c685',
     '2ed5d76f-b31d-47c2-9f1c-0555b659ce35'
 ]
+
+OS_NGD_URL = f"https://api.os.uk/features/ngd/ofa/v1/collections/{COLLECTION_ID}/items"
 
 filter_units = []
 for osid in OSIDS:
