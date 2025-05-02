@@ -19,20 +19,20 @@ OSIDS = [
     '2ed5d76f-b31d-47c2-9f1c-0555b659ce35'
 ]
 
-OS_NGD_URL = f"https://api.os.uk/features/ngd/ofa/v1/collections/{COLLECTION_ID}/items"
+os_ngd_url = f"https://api.os.uk/features/ngd/ofa/v1/collections/{COLLECTION_ID}/items"
 
 filter_units = []
 for osid in OSIDS:
     filter_units.append(f"(osid='{osid}')")
 
-FILTER_STRING = 'or'.join(filter_units)
+filter_string = 'or'.join(filter_units)
 
 parameters = {
     "key": OS_API_KEY,
-    "filter": FILTER_STRING
+    "filter": filter_string
 }
 
-print(f'requesting {OS_NGD_URL} with parameters {parameters}')
-os_response = requests.get(url=OS_NGD_URL, params=parameters, timeout=10).json()
+print(f'requesting {os_ngd_url} with parameters {parameters}')
+os_response = requests.get(url=os_ngd_url, params=parameters, timeout=10).json()
 
 print(os_response)
