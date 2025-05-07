@@ -6,12 +6,19 @@ from shapely import MultiLineString, LineString, to_geojson
 # Setup: Replace with your API key, and set your own address and buffer distance
 API_KEY = 'YOUR_OS_API_KEY'
 
+PLACES_FIND_ENDPOINT = 'https://api.os.uk/search/places/v1/find'
+FEATURES_ENDPOINT = 'https://api.os.uk/features/v1/wfs'
+PLACES_POLYGON_ENDPOINT = 'https://api.os.uk/search/places/v1/polygon'
+
 def retrieve_address_usrn(address):
-    query_uri = 'https://api.os.uk/search/places/v1/find?query=' + address
-    # Get the coordinates of the address
+    """Retrieve the USRN of the address using the OS Places API."""
     query_response = requests.get(
-        query_uri,
-        params={'dataset': 'LPI', 'key': API_KEY},
+        PLACES_FIND_ENDPOINT,
+        params={
+            'query': address,
+            'dataset': 'LPI',
+            'key': API_KEY
+        },
         timeout=10
     ).json()
     first_result = query_response['results'][0]['LPI']
@@ -20,6 +27,7 @@ def retrieve_address_usrn(address):
 
 
 def get_ogc_filter(usrn):
+    """Get the geometry of the USRN using an OGC filter."""
     usrn_filter_formatted = f"""
     <ogc:Filter>
         <ogc:PropertyIsEqualTo>
@@ -32,20 +40,18 @@ def get_ogc_filter(usrn):
         </ogc:PropertyIsEqualTo>
     </ogc:Filter>"""
     usrn_filter = usrn_filter_formatted.replace(' ', '').replace('\n', '')
-    params = {
-        'key': API_KEY,
-        'request': 'GetFeature',
-        'service': 'WFS',
-        'version': '2.0.0',
-        'outputFormat': 'geojson',
-        'typeNames': 'OpenUSRN_USRN',
-        'srsName': 'EPSG:27700',
-        'filter': usrn_filter
-    }
-    features_api_uri = 'https://api.os.uk/features/v1/wfs'
     features_response = requests.get(
-        features_api_uri,
-        params=params,
+        FEATURES_ENDPOINT,
+        params={
+            'request': 'GetFeature',
+            'service': 'WFS',
+            'version': '2.0.0',
+            'outputFormat': 'geojson',
+            'typeNames': 'OpenUSRN_USRN',
+            'srsName': 'EPSG:27700',
+            'filter': usrn_filter,
+            'key': API_KEY
+        },
         timeout=10
     ).json()
     geometry = features_response['features'][0]['geometry']
@@ -53,21 +59,24 @@ def get_ogc_filter(usrn):
 
 
 def buffer_geometry(geometry, buffer_distance):
+    """Buffer the geometry by the specified distance."""
     ShapeType = geometry['type']
     Constructor = MultiLineString if ShapeType == 'MultiLineString' else LineString
     shape = Constructor(geometry['coordinates'])
     buffered_shape = shape.buffer(buffer_distance, resolution=4)
     return buffered_shape
 
-
 def address_search(shape, dataset):
-    # Convert the buffered shape to GeoJSON
+    """Search for addresses within the buffered geometry."""
     geojson = to_geojson(shape)
     polygon_search_uri = 'https://api.os.uk/search/places/v1/polygon'
     headers = {'Content-Type': 'application/json'}
     places_response = requests.post(
         polygon_search_uri,
-        params={'key': API_KEY, 'dataset': dataset},
+        params={
+            'dataset': dataset,
+            'key': API_KEY
+        },
         data=geojson,
         headers=headers,
         timeout=10
@@ -75,8 +84,8 @@ def address_search(shape, dataset):
     results = places_response['results']
     return results
 
-
 def filter_results(results, usrn):
+    """Filter results to only include those with the specified USRN."""
     filtered_results = []
     for r in results:
         if r['LPI']['USRN'] == usrn:
@@ -84,6 +93,7 @@ def filter_results(results, usrn):
     return filtered_results
 
 def run():
+    """Main function to run the address search."""
     address = 'F4, Sutton Yard, 65 Goswell Rd., London EC1V 7EN'
     buffer_distance = 20  # in meters
     dataset = 'LPI'  # Dataset for the final search: DPA or LPI
