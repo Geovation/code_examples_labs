@@ -4,7 +4,7 @@ This example demonstrates how to use the OS Places API to find neighboring addre
 import requests
 
 # Replace with your API key
-API_KEY = 'YOUR_API_KEY'
+API_KEY = 'YOUR_OS_API_KEY'
 
 PLACES_FIND_ENDPOINT = 'https://api.os.uk/search/places/v1/find'
 PLACES_RADIUS_ENDPOINT = 'https://api.os.uk/search/places/v1/radius'
