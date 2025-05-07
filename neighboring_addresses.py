@@ -6,6 +6,9 @@ import requests
 # Replace with your API key
 API_KEY = 'YOUR_API_KEY'
 
+PLACES_FIND_ENDPOINT = 'https://api.os.uk/search/places/v1/find'
+PLACES_RADIUS_ENDPOINT = 'https://api.os.uk/search/places/v1/radius'
+
 def get_nearby_addresses(address, radius):
     """
     Get nearby addresses within a specified radius from a given address.
@@ -13,11 +16,10 @@ def get_nearby_addresses(address, radius):
     :param radius: The radius in meters to search for nearby addresses.
     :return: A list of nearby addresses.
     """
-    query_uri = 'https://api.os.uk/search/places/v1/find'
 
     # Get the coordinates of the address
     query_response = requests.get(
-        query_uri,
+        PLACES_FIND_ENDPOINT,
         params={'key': API_KEY, 'query': address},
         timeout=10
     ).json()
@@ -25,9 +27,8 @@ def get_nearby_addresses(address, radius):
     x, y = first_result['X_COORDINATE'], first_result['Y_COORDINATE']
 
     # Radius search
-    radius_uri = 'https://api.os.uk/search/places/v1/radius'
     radius_response = requests.get(
-        radius_uri,
+        PLACES_RADIUS_ENDPOINT,
         params={
             'key': API_KEY,
             'point': f'{x},{y}',
