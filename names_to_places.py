@@ -5,7 +5,7 @@ The Names API allows for a free-text address search. If UPRN is known, then Open
 
 import requests
 
-API_KEY = '7EfaXdK1HGuGs0j1dsp1vQoskVCQco6G'
+API_KEY = 'YOUR_OS_API_KEY'
 
 # Pick a local type which is relevant to your search.
 # Make sure the category is geographically small (eg, Named Road, Postcode, Bus Station)
