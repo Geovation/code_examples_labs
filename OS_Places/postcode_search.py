@@ -1,5 +1,5 @@
 """
-This script uses the OS Places API to finds all addresses with a specified postcode.
+This script uses the OS Places API to find all addresses with a specified postcode.
 """
 
 import requests as r 
