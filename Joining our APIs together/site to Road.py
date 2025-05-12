@@ -2,7 +2,7 @@ import requests
 
 # Use your OS API key from the OS Data Hub, a string of 32 characters
 # Note: The API key should be kept secret and not shared publicly
-YOUR_OS_API_KEY = '7EfaXdK1HGuGs0j1dsp1vQoskVCQco6G'
+YOUR_OS_API_KEY = 'YOUR_OS_API_KEY'
 
 
 def fetch_data_from_os_api(collection, ids, id_type):
