@@ -54,7 +54,7 @@ def read_address_csv():
     Each dictionary represents a row in the CSV file.
     """
 
-    with open(SAMPLE_DATA_FILE, mode="r", encoding="utf-8") as csvfile:
+    with open(SAMPLE_DATA_FILE, mode="r", encoding="utf-8-sig") as csvfile:
         reader = csv.DictReader(csvfile)
         addresses = []
         for row in reader:
