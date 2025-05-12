@@ -6,14 +6,14 @@ import requests as r
 
 
 #Replace with your OS API key from the OS Data Hub
-os_api_key = 'YOUR_OS_API_KEY'
+OS_API_KEY = 'YOUR_OS_API_KEY'
 
 #Replace with the postcode to search for
-postcode_of_interest = 'EC1V 7EN'
+POSTCODE_OF_INTEREST = 'EC1V 7EN'
 
 
 
-def postcode_search(postcode, os_api_key):
+def postcode_search(postcode):
     """
     This function find addresses from the OS Places API using a particular postcode.
 
@@ -29,7 +29,7 @@ def postcode_search(postcode, os_api_key):
     os_places_url = f'https://api.os.uk/search/places/v1/postcode'
 
     postcode_params = {
-        'key': os_api_key,
+        'key': OS_API_KEY,
         'postcode': postcode
     }
 
@@ -38,6 +38,7 @@ def postcode_search(postcode, os_api_key):
     results = response['results']
 
     #Extract the addresses as a list
+    #Note: DPA (Delivery Point Address) are postal addresses, and is the most approariate address database for a postcode search for delivery addresses.
     addresses = []
     for address in results:
         address = address['DPA']['ADDRESS']
@@ -51,6 +52,6 @@ def postcode_search(postcode, os_api_key):
 
 
 
-postcode_search(postcode_of_interest, os_api_key)
+postcode_search(POSTCODE_OF_INTEREST)
 
 
