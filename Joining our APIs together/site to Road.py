@@ -7,6 +7,8 @@ YOUR_OS_API_KEY = 'YOUR_OS_API_KEY'
 
 def fetch_data_from_os_api(collection, ids, id_type):
     # fetch data from OS API based on collection name and IDs.
+    # valid collection list>
+    # https://docs.os.uk/osngd/accessing-os-ngd/access-the-os-ngd-api/os-ngd-api-features/technical-specification/collection
 
     os_ngd_url = f"https://api.os.uk/features/ngd/ofa/v1/collections/{collection}/items"
     filter_units = [f"({id_type}='{id}')" for id in ids]
@@ -58,5 +60,6 @@ def run_match_sites_to_roads():
     road_track_and_path_data = fetch_data_from_os_api(ngd_collection, roadtrackorpath_ids, 'osid')
 
     print(road_track_and_path_data)
+
 
 run_match_sites_to_roads()
