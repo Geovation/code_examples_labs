@@ -23,14 +23,14 @@ BUILDING_URL = f"https://api.os.uk/features/ngd/ofa/v1/collections/{BUILDINGS_CO
 SITE_NAME = 'University of Exeter'
 
 
-def get_site_from_site_name():
+def get_site_from_site_name(site_name):
     """
     Gets a site from the OS NGD Features API using the name of the site.
     This assumes the first match is the correct one - this may not be the case
     so be careful with this.
     """
 
-    site_name_filter = f"name1_text='{SITE_NAME}'"
+    site_name_filter = f"name1_text='{site_name}'"
 
     site_parameters = {
         "key": YOUR_OS_API_KEY,
@@ -67,7 +67,7 @@ def run():
     Main function to retrieve the NGD building data for a given site name
     """
 
-    site = get_site_from_site_name()
+    site = get_site_from_site_name(SITE_NAME)
     if site and 'properties' in site and 'mainbuildingid' in site['properties']:
         building_osid = site['properties']['mainbuildingid']
         print(f"Main building OSID for {SITE_NAME} is {building_osid}")
