@@ -11,7 +11,7 @@ OS_API_KEY = 'YOUR_OS_API_KEY'
 # Replace with the bounding box coordinates to search for 
 # Should be a pair of comma separated coordinates, to 2 decimal places or less, specifying the southwest and northeast corners of the bounding box
 # Error message will be returned if the maximum size of the bounding box is exceeds 1km2
-BBOX_COORDINATES = 'XMIN,YMIN,XMAX,YMAX'
+BBOX_COORDINATES = '437256.6, 115481.3, 437376.4, 115601.7'
 
 # Input the address dataset to search for, which can be either DPA (Delivery Point Address) or LPI (Large Scale Addressing)
 # See https://docs.os.uk/os-apis/accessing-os-apis/os-places-api/datasets for more information

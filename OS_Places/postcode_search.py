@@ -15,7 +15,7 @@ POSTCODE_OF_INTEREST = 'EC1V 7EN'
 
 def postcode_search(postcode):
     """
-    This function find addresses from the OS Places API using a particular postcode.
+    This function finds addresses from the OS Places API using a particular postcode.
 
     Args:
         poscode (str): The postcode to search for.
