@@ -1,6 +1,6 @@
 import requests
 
-YOUR_OS_API_KEY = 'MGLREA5yR0hYbjXjcGn0Y4i3VODTPLIK'
+YOUR_OS_API_KEY = 'YOUR API KEY HERE'
 
 # Replace with the UPRN you want to search for. 100121341481 is Bradford on Avon library
 
@@ -25,14 +25,21 @@ for feature in os_response['features']:
         for values in uprnreferences:
             uprns_to_fetch.append(values['uprn'])
 
-os_places_url = "https://api.os.uk/search/places/v1/UPRN?"
+os_places_url = "https://api.os.uk/search/places/v1/uprn?"
 
 parameters = {
-    "key": YOUR_OS_API_KEY,
+    "key": YOUR_OS_API_KEY
 }
 
 full_addresses = []
 
-for uprn in
+for uprn in uprns_to_fetch:
+    parameters['uprn'] = uprn
+    response = requests.get(url=os_places_url, params=parameters, timeout=10).json()
+    print(requests.get(url=os_places_url, params=parameters, timeout=10).url)
+    if 'results' in response and response['results']:
+        for result in response['results']:
+            full_addresses.append(result['DPA']['ADDRESS'])
 
-print(uprns_to_fetch)
+print(full_addresses)
+
