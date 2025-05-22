@@ -14,8 +14,7 @@ OS_API_KEY = 'YOUR_OS_API_KEY'
 # An error message will be returned if the maximum size of the bounding box exceeds 1km2.
 BBOX_COORDINATES = '437256.6, 115481.3, 437376.4, 115601.7'
 
-# Input the address dataset to search for, either DPA (Delivery Point Address) or LPI
-# (Large Scale Addressing).
+# Input the address dataset to search for, either DPA or LPI.
 # See https://docs.os.uk/os-apis/accessing-os-apis/os-places-api/datasets for more information.
 DATASET = 'DPA'
 

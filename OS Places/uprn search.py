@@ -11,8 +11,7 @@ OS_API_KEY = 'YOUR_OS_API_KEY'
 # Replace with the UPRN to search for.
 UPRN_OF_INTEREST = '10094608166'
 
-# Input the address dataset to search for, either DPA (Delivery Point Address) or LPI
-# (Large Scale Addressing).
+# Input the address dataset to search for, either DPA or LPI.
 # See https://docs.os.uk/os-apis/accessing-os-apis/os-places-api/datasets for more information.
 DATASET = 'DPA'
 

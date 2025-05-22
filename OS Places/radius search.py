@@ -14,8 +14,7 @@ RADIUS_COORDINATES = '437297.4, 115541.6'
 # Replace with the radius of the search circle.
 RADIUS = '100'
 
-# Input the address dataset to search for, either DPA (Delivery Point Address) or LPI
-# (Large Scale Addressing).
+# Input the address dataset to search for, either DPA or LPI.
 # See https://docs.os.uk/os-apis/accessing-os-apis/os-places-api/datasets for more information.
 DATASET = 'DPA'
 
