@@ -38,7 +38,6 @@ def match_buildings_to_addressses():
     for uprn in uprns_to_fetch:
         parameters['uprn'] = uprn
         response = requests.get(url=os_places_url, params=parameters, timeout=10).json()
-        print(requests.get(url=os_places_url, params=parameters, timeout=10).url)
         if 'results' in response and response['results']:
             for result in response['results']:
                 full_addresses.append(result['DPA']['ADDRESS'])
