@@ -9,7 +9,7 @@ import requests as r
 OS_API_KEY = 'YOUR_OS_API_KEY'
 
 # Replace with the postcode to search for.
-POSTCODE_OF_INTEREST =  'SO16 0AS'
+POSTCODE_OF_INTEREST = 'SO16 0AS'
 
 
 def postcode_search(postcode):
@@ -44,11 +44,10 @@ def postcode_search(postcode):
         addresses.append(address)
 
     print(f'Returning addresses for {postcode}:')
-    print('\n'.join(addresses))     #print each address on a new line
-
+    # print each address on a new line
+    print('\n'.join(addresses))
 
     return addresses
-
 
 
 postcode_search(POSTCODE_OF_INTEREST)

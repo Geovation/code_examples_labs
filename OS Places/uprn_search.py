@@ -43,9 +43,7 @@ def uprn_search(uprn):
     print(f'Returning address entry for {uprn}:')
     print(results)
 
-
     return results
-
 
 
 uprn_search(UPRN_OF_INTEREST)

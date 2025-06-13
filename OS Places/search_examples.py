@@ -6,7 +6,7 @@ methods.
 import requests as r
 
 
-## CONSTANTS ##
+# CONSTANTS ##
 
 # Replace with your OS API key from the OS Data Hub.
 OS_API_KEY = 'YOUR_OS_API_KEY'
@@ -15,8 +15,7 @@ OS_API_KEY = 'YOUR_OS_API_KEY'
 # See https://docs.os.uk/os-apis/accessing-os-apis/os-places-api/datasets for more information.
 DATASET = 'DPA'
 
-#---------------------------------------------------------------------------------------------------
-## METHOD 1: FREE TEXT SEARCH
+# METHOD 1: FREE TEXT SEARCH
 
 # Replace with the text query to search for.
 QUERY = 'GEOVATION'
@@ -51,15 +50,12 @@ def query_search(text):
     print(f'Returning possible addresses with query {text}:')
     print(possible_matches)
 
-
     return possible_matches
-
 
 
 query_search(QUERY)
 
-#---------------------------------------------------------------------------------------------------
-## METHOD 2: POSTCODE SEARCH
+# METHOD 2: POSTCODE SEARCH
 
 # Replace with the postcode to search for.
 POSTCODE_OF_INTEREST =  'SO16 0AS'
@@ -97,17 +93,15 @@ def postcode_search(postcode):
         addresses.append(address)
 
     print(f'Returning addresses for {postcode}:')
-    print('\n'.join(addresses))     #print each address on a new line
+    # print each address on a new line
 
+    print('\n'.join(addresses))
 
     return addresses
 
 
-
 postcode_search(POSTCODE_OF_INTEREST)
 
-#---------------------------------------------------------------------------------------------------
-## METHOD 3: UPRN SEARCH
 
 # Replace with the UPRN to search for.
 UPRN_OF_INTEREST = '10094608166'
@@ -140,15 +134,12 @@ def uprn_search(uprn):
     print(f'Returning address entry for {uprn}:')
     print(results)
 
-
     return results
-
 
 
 uprn_search(UPRN_OF_INTEREST)
 
-#---------------------------------------------------------------------------------------------------
-## METHOD 4: BOUNDING BOX SEARCH
+# METHOD 4: BOUNDING BOX SEARCH
 
 # Replace with the coordinates (2dp or less) of the southwest and northeast corners of the bounding
 # box to search for.
@@ -199,15 +190,12 @@ def bbox_search(bbox_coordinates):
 
     print(f'Number of addresses returned within the bounding box: {addresses_count}')
 
-
     return addresses
-
 
 
 bbox_search(BBOX_COORDINATES)
 
-#---------------------------------------------------------------------------------------------------
-## METHOD 5: RADIUS SEARCH
+# METHOD 5: RADIUS SEARCH
 
 # Replace with the point coordinate (2dp or less) of the centre of the search circle.
 RADIUS_COORDINATES = '437297.4, 115541.6'
@@ -249,15 +237,12 @@ def radius_search(radius_coordinates):
     print(f'Returning addresses within the circle search area from point {RADIUS_COORDINATES}:')
     print(addresses)
 
-
     return addresses
-
 
 
 radius_search(RADIUS_COORDINATES)
 
-#---------------------------------------------------------------------------------------------------
-## METHOD 6: POLYGON SEARCH
+# METHOD 6: POLYGON SEARCH
 
 # Replace with GeoJSON geometry of the search polygon.
 GEOMETRY = {

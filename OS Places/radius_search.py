@@ -8,7 +8,7 @@ import requests as r
 # Replace with your OS API key from the OS Data Hub.
 OS_API_KEY = 'YOUR_OS_API_KEY'
 
-# Replace with the point coordinate (2dp or less) of the centre of the search circle.
+# Replace with the point coordinate (2dp or less) of the centre of the search circle. These are eastings and northings
 RADIUS_COORDINATES = '437297.4, 115541.6'
 
 # Replace with the radius of the search circle.
@@ -38,7 +38,7 @@ def radius_search(radius_coordinates):
         'key': OS_API_KEY,
         'point': radius_coordinates,
         'radius': RADIUS,
-        'dataset' : DATASET,
+        'dataset': DATASET,
         'srs': 'EPSG:27700'                                                                                                                                                                                                                                                  
     }
 
@@ -52,9 +52,7 @@ def radius_search(radius_coordinates):
     print(f'Returning addresses within the circle search area from point {RADIUS_COORDINATES}:')
     print(addresses)
 
-
     return addresses
-
 
 
 radius_search(RADIUS_COORDINATES)
