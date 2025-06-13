@@ -62,9 +62,7 @@ def bbox_search(bbox_coordinates):
 
     print(f'Number of addresses returned within the bounding box: {addresses_count}')
 
-
     return addresses
-
 
 
 bbox_search(BBOX_COORDINATES)

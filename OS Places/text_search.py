@@ -45,9 +45,7 @@ def query_search(text):
     print(f'Returning possible addresses with query {text}:')
     print(possible_matches)
 
-
     return possible_matches
-
 
 
 query_search(QUERY)

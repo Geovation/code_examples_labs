@@ -9,6 +9,7 @@ import requests as r
 OS_API_KEY = 'YOUR_OS_API_KEY'
 
 # Replace with GeoJSON geometry of the search polygon.
+# these are eastings and northings rather than WGS84 Latitude Longitudes
 GEOMETRY = {
   "type": "Feature",
   "geometry": {"type": "Polygon",
